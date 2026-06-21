@@ -4,6 +4,8 @@ const envObj = require("./config/env");
 const productRoute = require("./routes/product");
 const authRoute = require("./routes/auth");
 const cors = require("cors");
+const { transporter, testTransporter } = require("./utils/mailer");
+
 
 const server = express();
 server.use(express.json());
@@ -19,6 +21,10 @@ server.get("/", (req, res) => {
 const port = envObj.port;
 
 connectDB();
+testTransporter();
+
+
+
 
 server.listen(port, () => {
   console.log("April node server is ruining on port 4000");

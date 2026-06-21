@@ -42,9 +42,10 @@ const createProduct = async (req, res) => {
         console.log(result, "from cloudinary");
         const product ={
           ...req.body,
+          userId: req.user.userID,
           image: result.secure_url,
           imageId: result.public_id,
-          userId: req.user.userID,
+          
         };
 
         await Product.create(product);

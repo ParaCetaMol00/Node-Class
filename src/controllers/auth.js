@@ -1,8 +1,19 @@
+const {validationResult} = require("express-validator"); 
 const envObj = require("../config/env");
 const User = require("../models/auth");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+
 const registerUser = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+
+    return res.status(400).json({ errors: errors.array()?.[0].msg });
+  }
+
+
   try {
     // user input
     const { email, name, password, gender } = req.body;
@@ -35,7 +46,7 @@ const registerUser = async (req, res) => {
     // console.log(hashedPassword);
 
     // creating user in the database
-    await User.create({ email, password: hashedPassword, name, gender });
+    await User.create({ ...req.body, password: hashedPassword, });
 
     // creating user object with the password for response
     const user = {
