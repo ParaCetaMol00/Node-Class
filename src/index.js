@@ -4,7 +4,7 @@ const envObj = require("./config/env");
 const productRoute = require("./routes/product");
 const authRoute = require("./routes/auth");
 const cors = require("cors");
-const { transporter, testTransporter } = require("./utils/mailer");
+const { transporter, testTransporter, sendWelcomingEmail } = require("./utils/mailer");
 
 
 const server = express();

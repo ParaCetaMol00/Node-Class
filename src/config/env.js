@@ -12,6 +12,7 @@ const envObj = {
   cloud_api_secret: process.env.CLOUD_API_SECRET,
   app_password: process.env.APP_PASSWORD,
   app_email: process.env.APP_EMAIL,
+  clientUrl: process.env.CLIENT_URL,
 };
 
 module.exports = envObj;
